@@ -1,0 +1,61 @@
+{
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 1080,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : false,
+        "routeOnly" : true
+      },
+      "tag" : "socks"
+    }
+  ],
+  "outbounds" : [
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "nv167.momdping.com",
+            "port" : 443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "b3617b20-41cb-4240-a67b-8d8214797c4f"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "ws",
+        "security" : "tls",
+        "tlsSettings" : {
+
+        },
+        "wsSettings" : {
+          "path" : "\/"
+        }
+      },
+      "tag" : "proxy"
+    },
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    }
+  ]
+}
